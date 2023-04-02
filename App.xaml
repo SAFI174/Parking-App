@@ -1,0 +1,57 @@
+﻿<Application
+    x:Class="ParkingApp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:classes="clr-namespace:ParkingApp.Classes"
+    xmlns:local="clr-namespace:ParkingApp"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:models="clr-namespace:ParkingApp.Models"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    xmlns:viewmodel="clr-namespace:ParkingApp.ViewModel"
+    StartupUri="Views/Windows/Login.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  ModernWPF UI Package  -->
+                <ui:ThemeResources />
+                <ui:XamlControlsResources />
+
+                <!--  Material Design Xaml Package  -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.datagrid.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.light.xaml" />
+                <!--<materialDesign:BundledTheme
+                    BaseTheme="Dark"
+                    PrimaryColor="Grey"
+                    SecondaryColor="LightGreen" />-->
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  Colors  -->
+            <SolidColorBrush x:Key="AccentColor" Color="{DynamicResource SystemAccentColor}" />
+            
+            <!--  ViewModels  -->
+            <viewmodel:UsersViewModel x:Key="UsersViewModel" />
+            <viewmodel:ReportsViewModel x:Key="ParkedCarsViewModel" />
+            <models:Users x:Key="UserModel" />
+
+
+            <!--  Custom Styles  -->
+            <Style
+                x:Key="CheckBoxDataGridArabicFlow"
+                BasedOn="{StaticResource DefaultCheckBoxStyle}"
+                TargetType="{x:Type CheckBox}">
+                <Setter Property="Background" Value="{DynamicResource AccentColor}" />
+                <Setter Property="IsHitTestVisible" Value="False" />
+                <Setter Property="Focusable" Value="False" />
+                <Style.Resources>
+                    <Style TargetType="{x:Type Grid}">
+                        <Setter Property="FlowDirection" Value="LeftToRight" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+<!--  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  -->

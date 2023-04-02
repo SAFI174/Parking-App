@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/04/2023 22:57:43" ReportInfo.Modified="02/13/2023 00:05:41" ReportInfo.CreatorVersion="2023.1.0.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ParkedCars" ReferenceName="ParkedCars" DataType="null" Enabled="true">
+      <Column Name="ID" DataType="System.String"/>
+      <Column Name="Number" DataType="System.String"/>
+      <Column Name="Column" Alias="Barcode" DataType="System.String"/>
+      <Column Name="Column1" Alias="EndDate" DataType="System.String"/>
+      <Column Name="Column2" Alias="Name" DataType="System.String" BindableControl="Custom" CustomBindableControl="Customer.Name"/>
+      <Column Name="TotalTime" DataType="System.String" PropName="Column3"/>
+      <Column Name="Cost" DataType="System.String" PropName="Column3" Format="Number"/>
+      <Column Name="Status" DataType="System.String" PropName="Column3"/>
+      <Column Name="Name" Alias="Customer.Name" Enabled="false" DataType="null" PropName="Column3"/>
+      <Column Name="Column3" Alias="CustomerName" DataType="System.String"/>
+      <Column Name="Column4" Alias="CustomerHourPrice" DataType="System.String"/>
+    </BusinessObjectDataSource>
+    <BusinessObjectDataSource Name="Customers" ReferenceName="Customers" DataType="null" Enabled="true" ForceLoadData="true">
+      <Column Name="Name" DataType="System.String"/>
+      <Column Name="HourPrice" DataType="System.String"/>
+    </BusinessObjectDataSource>
+    <Parameter Name="StartDate" DataType="System.String" AsString=""/>
+    <Parameter Name="EndDate" DataType="System.String" AsString=""/>
+    <Total Name="Total" Expression="[ParkedCars.Cost]" Evaluator="Data1"/>
+    <Total Name="Total1" Expression="[ParkedCars.Cost]" Evaluator="Data1" PrintOn="PageFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="103.95" CanGrow="true">
+      <ContainerObject Name="Container1" Width="718.2" Height="103.95" Dock="Fill" Border.Lines="Bottom" CanGrow="true" GrowToBottom="true">
+        <TextObject Name="Text2" Left="670.95" Top="75.6" Width="47.25" Height="28.35" Anchor="Top, Bottom, Left, Right" Border.Lines="All" Fill.Color="180, 0, 0, 0" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="رقم" AllowExpressions="false" HorzAlign="Center" Font="Cairo, 9.75pt, style=Bold" TextFill.Color="White"/>
+        <TextObject Name="Text6" Left="576.45" Top="75.6" Width="94.5" Height="28.35" Anchor="Top, Bottom, Left, Right" Border.Lines="All" Fill.Color="180, 0, 0, 0" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="باركود" AllowExpressions="false" HorzAlign="Center" Font="Cairo, 9.75pt, style=Bold" TextFill.Color="White"/>
+        <TextObject Name="Text7" Top="9.45" Width="718.2" Height="28.35" Text="فندق شهبا حلب" HorzAlign="Center" VertAlign="Center" Font="Cairo, 18pt"/>
+        <TextObject Name="Text9" Left="481.95" Top="75.6" Width="94.5" Height="28.35" Anchor="Top, Bottom, Left, Right" Border.Lines="All" Fill.Color="180, 0, 0, 0" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="تاريخ الدخول" AllowExpressions="false" HorzAlign="Center" Font="Cairo, 9.75pt, style=Bold" TextFill.Color="White"/>
+        <TextObject Name="Text10" Left="387.45" Top="75.6" Width="94.5" Height="28.35" Anchor="Top, Bottom, Left, Right" Border.Lines="All" Fill.Color="180, 0, 0, 0" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="تاريخ الخروج" AllowExpressions="false" HorzAlign="Center" Font="Cairo, 9.75pt, style=Bold" TextFill.Color="White"/>
+        <TextObject Name="Text12" Left="207.9" Top="75.6" Width="75.6" Height="28.35" Anchor="Top, Bottom, Left, Right" Border.Lines="All" Fill.Color="180, 0, 0, 0" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="الزبون" AllowExpressions="false" HorzAlign="Center" Font="Cairo, 9.75pt, style=Bold" TextFill.Color="White"/>
+        <TextObject Name="Text13" Left="283.5" Top="75.6" Width="103.95" Height="28.35" Anchor="Top, Bottom, Left, Right" Border.Lines="All" Fill.Color="180, 0, 0, 0" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="الوقت الإجمالي" AllowExpressions="false" HorzAlign="Center" Font="Cairo, 9.75pt, style=Bold" TextFill.Color="White"/>
+        <TextObject Name="Text15" Left="122.85" Top="75.6" Width="85.05" Height="28.35" Anchor="Top, Bottom, Left, Right" Border.Lines="All" Fill.Color="180, 0, 0, 0" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="سعر الساعة" AllowExpressions="false" HorzAlign="Center" Font="Cairo, 9.75pt, style=Bold" TextFill.Color="White"/>
+        <TextObject Name="Text16" Left="56.7" Top="75.6" Width="66.15" Height="28.35" Anchor="Top, Bottom, Left, Right" Border.Lines="All" Fill.Color="170, 0, 0, 0" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="التكلفة" AllowExpressions="false" HorzAlign="Center" Font="Cairo, 9.75pt, style=Bold" TextFill.Color="White"/>
+        <TextObject Name="Text17" Top="75.6" Width="56.7" Height="28.35" Anchor="Top, Bottom, Left, Right" Border.Lines="All" Fill.Color="180, 0, 0, 0" CanGrow="true" GrowToBottom="true" CanBreak="false" Text="الحالة" AllowExpressions="false" HorzAlign="Center" Font="Cairo, 9.75pt, style=Bold" TextFill.Color="White"/>
+        <TextObject Name="Text25" Left="548.1" Top="47.25" Width="226.8" Height="28.35" Text="بيانات المواقف المأجورة من تاريخ " VertAlign="Center" Font="Cairo, 9pt"/>
+        <TextObject Name="Text26" Left="406.35" Top="47.25" Width="141.75" Height="28.35" Text="[StartDate]" HorzAlign="Center" VertAlign="Center" Font="Cairo, 9pt"/>
+        <TextObject Name="Text27" Left="378" Top="47.25" Width="28.35" Height="28.35" CanBreak="false" Text="الى" HorzAlign="Center" VertAlign="Center" Font="Cairo, 9pt"/>
+        <TextObject Name="Text28" Left="236.25" Top="47.25" Width="141.75" Height="28.35" CanBreak="false" Text="[EndDate]" HorzAlign="Center" VertAlign="Center" Font="Cairo, 9pt"/>
+      </ContainerObject>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="106.62" Width="718.2" Height="47.25" CanGrow="true" DataSource="ParkedCars">
+      <ContainerObject Name="Container2" Width="718.2" Height="47.25" Dock="Fill" Border.Lines="Left, Right, Bottom" CanGrow="true" GrowToBottom="true">
+        <TextObject Name="Text4" Left="670.95" Width="47.25" Height="47.25" Border.Lines="Left" CanGrow="true" Text="[ParkedCars.Number]" HorzAlign="Center" VertAlign="Center" Font="Cairo, 9pt"/>
+        <TextObject Name="Text5" Left="576.45" Width="94.5" Height="47.25" Anchor="Top, Left, Right" Border.Lines="Left" Text="[ParkedCars.Barcode]" HorzAlign="Center" VertAlign="Center" Font="Cairo, 9pt"/>
+        <TextObject Name="Text8" Left="481.95" Width="94.5" Height="47.25" Border.Lines="Left" Text="[ParkedCars.StartDate]" HorzAlign="Center" VertAlign="Center" Font="Cairo, 9pt"/>
+        <TextObject Name="Text11" Left="387.45" Width="94.5" Height="47.25" Border.Lines="Left" Text="[ParkedCars.EndDate]" HorzAlign="Center" VertAlign="Center" Font="Cairo, 9pt"/>
+        <TextObject Name="Text14" Left="283.5" Width="103.95" Height="47.25" Border.Lines="Left" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ParkedCars.TotalTime]" HorzAlign="Center" VertAlign="Center" RightToLeft="true" Font="Cairo, 8pt"/>
+        <TextObject Name="Text18" Left="56.7" Width="66.15" Height="47.25" Border.Lines="Left" Text="[ParkedCars.Cost]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Center" VertAlign="Center" Font="Cairo, 9pt"/>
+        <TextObject Name="Text19" Width="56.7" Height="47.25" Text="[ParkedCars.Status]" HorzAlign="Center" VertAlign="Center" Font="Cairo, 9pt"/>
+        <TextObject Name="Text24" Left="122.85" Width="85.05" Height="47.25" Border.Lines="Left" Text="[ParkedCars.CustomerHourPrice]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Center" VertAlign="Center" Font="Cairo, 9pt"/>
+        <TextObject Name="Text23" Left="207.9" Width="75.6" Height="47.25" Border.Lines="Left" Text="[ParkedCars.CustomerName]" HorzAlign="Center" VertAlign="Center" Font="Cairo, 8pt"/>
+      </ContainerObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="156.53" Width="718.2" Height="47.25">
+      <TextObject Name="Text21" Left="548.1" Width="94.5" Height="47.25" Text="[Total1]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Right" VertAlign="Center" Font="Cairo, 12pt, style=Bold"/>
+      <TextObject Name="Text22" Left="633.15" Width="85.05" Height="47.25" Dock="Right" Anchor="Top, Bottom, Left, Right" Text=":الإجمالي" HorzAlign="Right" VertAlign="Center" Font="Cairo, 12pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

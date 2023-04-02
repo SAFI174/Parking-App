@@ -1,0 +1,60 @@
+﻿<ui:ContentDialog
+    x:Class="ParkingApp.Views.Dialogs.CustomerAddEditDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:classes="clr-namespace:ParkingApp.Classes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    Title="إضافة زبون جديد"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    CloseButtonText="إلغاء"
+    DefaultButton="Primary"
+    IsPrimaryButtonEnabled="{Binding ElementName=HiddenStyle, Path=IsEnabled}"
+    PrimaryButtonText="إضافة"
+    mc:Ignorable="d">
+    <ui:ContentDialog.Resources>
+        <Style
+            x:Key="PrimaryButtonStyle"
+            BasedOn="{StaticResource AccentButtonStyle}"
+            TargetType="{x:Type Button}">
+            <Style.Resources>
+                <classes:EmptyTextBoxValidation x:Key="EmptyTextBoxValidation" />
+            </Style.Resources>
+            <Setter Property="IsEnabled">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource EmptyTextBoxValidation}">
+                        <Binding ElementName="NameTb" Path="Text" />
+                        <Binding ElementName="HourPriceTb" Path="Text" />
+                        <Binding ElementName="HalfHourPriceTb" Path="Text" />
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </ui:ContentDialog.Resources>
+    <ui:SimpleStackPanel Spacing="15">
+        <TextBox x:Name="NameTb" ui:ControlHelper.Header="الأسم" />
+        <ui:NumberBox
+            x:Name="HourPriceTb"
+            ui:ControlHelper.Header="سعر الساعة"
+            LargeChange="500"
+            Minimum="0"
+            SmallChange="500"
+            SpinButtonPlacementMode="Inline"
+            Value="500" />
+        <ui:NumberBox
+            x:Name="HalfHourPriceTb"
+            ui:ControlHelper.Header="سعر نصف الساعة"
+            LargeChange="500"
+            Minimum="0"
+            SmallChange="500"
+            SpinButtonPlacementMode="Inline"
+            Value="500" />
+        <!--  Used to check if textboxes is empty  -->
+        <Button
+            Name="HiddenStyle"
+            Style="{StaticResource PrimaryButtonStyle}"
+            Visibility="Collapsed" />
+    </ui:SimpleStackPanel>
+</ui:ContentDialog>

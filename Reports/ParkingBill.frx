@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/03/2023 22:03:17" ReportInfo.Modified="03/03/2023 14:09:01" ReportInfo.CreatorVersion="2023.1.0.0">
+  <Dictionary>
+    <Parameter Name="CarNumber" DataType="System.String" AsString=""/>
+    <Parameter Name="StartDate" DataType="System.String" AsString=""/>
+    <Parameter Name="Barcode" DataType="System.String" AsString=""/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="80" PaperHeight="80" FirstPageSource="15" OtherPagesSource="15" LastPageSource="15" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="226.8" Height="37.8">
+      <TextObject Name="Text1" Left="-18.9" Top="-9.45" Width="226.8" Height="37.8" Text="شهبا حلب مواقف مأجورة" HorzAlign="Center" VertAlign="Center" Font="Cairo, 11pt"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="40.47" Width="226.8" Height="103.95">
+      <TextObject Name="Text2" Left="-18.9" Width="226.8" Height="75.6" Text="[CarNumber]" HorzAlign="Center" VertAlign="Center" Font="Cairo, 60pt"/>
+      <TextObject Name="Text3" Left="-18.9" Top="85.05" Width="226.8" Height="18.9" Text="[StartDate]" HorzAlign="Center" VertAlign="Center" Font="Cairo, 12pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="147.08" Width="226.8" Height="85.05">
+      <BarcodeObject Name="Barcode2" Left="18.9" Width="167.5" Height="47.25" Anchor="Top, Bottom, Left, Right" Text="[Barcode]" AllowExpressions="true" HorzAlign="Center" Barcode="Code128" Barcode.AutoEncode="true"/>
+      <TextObject Name="Text4" Left="-18.9" Top="47.25" Width="226.8" Height="37.8" Text="يرجى الاحتفاظ بل ورقة" HorzAlign="Center" VertAlign="Center" Font="Cairo, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,113 @@
+﻿<ui:Page
+    x:Class="ParkingApp.Views.Pages.Users"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:classes="clr-namespace:ParkingApp.Classes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    xmlns:viewModel="clr-namespace:ParkingApp.ViewModel"
+    Title="Users"
+    mc:Ignorable="d">
+    <ui:Page.DataContext>
+        <viewModel:UsersViewModel />
+    </ui:Page.DataContext>
+    <ui:Page.Resources>
+        <classes:BindingProxy x:Key="Proxy" Data="{Binding}" />
+        <ContextMenu x:Key="RowMenu">
+            <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.EditUserCommand}" Header="تعديل">
+                <MenuItem.Icon>
+                    <ui:SymbolIcon Symbol="Edit" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Command="{Binding Source={StaticResource Proxy}, Path=Data.DeleteUserCommand}" Header="حذف">
+                <MenuItem.Icon>
+                    <ui:SymbolIcon Symbol="Delete" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+        <Style
+            x:Key="RowStyle"
+            BasedOn="{StaticResource DefaultDataGridRowStyle}"
+            TargetType="{x:Type DataGridRow}">
+            <Setter Property="ContextMenu" Value="{StaticResource RowMenu}" />
+        </Style>
+    </ui:Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+            <!--  Search text to filter user data  -->
+            <TextBox
+                Grid.Column="0"
+                Height="30"
+                Margin="10,0,0,0"
+                ui:ControlHelper.PlaceholderText="اكتب هنا للبحث"
+                ui:TextBoxHelper.IsDeleteButtonVisible="True"
+                Text="{Binding SearchText, Delay=500, UpdateSourceTrigger=PropertyChanged}" />
+
+            <!--  Add User Button  -->
+            <Button
+                Name="AddBtn"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                Command="{Binding AddUserCommand}"
+                Style="{StaticResource AccentButtonStyle}">
+                <ui:SimpleStackPanel Orientation="Horizontal" Spacing="5">
+                    <materialDesign:PackIcon VerticalAlignment="Bottom" Kind="AccountPlusOutline" />
+                    <TextBlock Text="إضافة مستخدم" />
+                </ui:SimpleStackPanel>
+            </Button>
+
+        </Grid>
+        <Separator
+            Grid.Row="1"
+            Margin="0,0,10,0"
+            Opacity=".3" />
+        <Grid Grid.Row="2">
+            <!--  Show User Data  -->
+            <DataGrid
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding FilterUsersList, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
+                MinRowHeight="35"
+                RowStyle="{StaticResource RowStyle}"
+                SelectedItem="{Binding SelectedUser}">
+                <DataGrid.InputBindings>
+                    <MouseBinding Command="{Binding EditUserCommand}" MouseAction="LeftDoubleClick" />
+                </DataGrid.InputBindings>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding ID}" Header="رقم المعرف" />
+                    <DataGridTextColumn
+                        Width="1*"
+                        Binding="{Binding FullName}"
+                        Header="الاسم الكامل" />
+                    <DataGridTextColumn
+                        Width="1*"
+                        Binding="{Binding Username}"
+                        Header="اسم المستخدم" />
+                    <DataGridTextColumn
+                        Width="1*"
+                        Binding="{Binding Password}"
+                        Header="كلمة المرور" />
+                    <DataGridCheckBoxColumn
+                        Binding="{Binding isAdmin}"
+                        ElementStyle="{StaticResource CheckBoxDataGridArabicFlow}"
+                        Header="كافة الصلاحيات" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</ui:Page>
